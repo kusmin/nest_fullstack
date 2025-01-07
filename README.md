@@ -39,8 +39,8 @@ task-manager/
 ### Usando Docker (Recomendado)
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/task-manager.git
-cd task-manager
+git clone https://github.com/kusmin/nest-fullstack.git
+cd nest-fullstack
 ```
 
 2. Inicie os containers com Docker Compose:
