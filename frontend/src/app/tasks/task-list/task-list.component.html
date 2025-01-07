@@ -1,0 +1,79 @@
+<div class="task-page">
+  <mat-toolbar color="primary" class="main-toolbar">
+    <span>Gerenciador de Tarefas</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="Menu do usuário">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Sair</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <div class="content-container">
+    <div class="header-actions">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Buscar tarefas</mat-label>
+        <input matInput [(ngModel)]="searchTerm" (keyup)="filterTasks()" placeholder="Digite para buscar...">
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="openTaskForm()" class="add-task-button">
+        <mat-icon>add</mat-icon>
+        Nova Tarefa
+      </button>
+    </div>
+
+    <div class="tasks-container" *ngIf="!isLoading">
+      <div class="task-filters">
+        <mat-button-toggle-group [(ngModel)]="currentFilter" (change)="filterTasks()">
+          <mat-button-toggle value="all">Todas</mat-button-toggle>
+          <mat-button-toggle value="active">Pendentes</mat-button-toggle>
+          <mat-button-toggle value="completed">Concluídas</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <mat-card *ngFor="let task of filteredTasks" class="task-card" [@taskAnimation]>
+        <mat-card-content>
+          <div class="task-header">
+            <mat-checkbox
+              [disabled]="task.status === 'CONCLUIDA'"
+              [checked]="task.status === 'CONCLUIDA'"
+              (change)="completeTask(task.id)"
+              color="primary">
+            </mat-checkbox>
+            <span [ngClass]="{'completed-text': task.status === 'CONCLUIDA'}">{{ task.title }}</span>
+            <div class="task-actions">
+              <button mat-icon-button color="primary" (click)="openTaskForm(task)" matTooltip="Editar">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="confirmDelete(task)" matTooltip="Excluir">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <p class="task-description" [ngClass]="{'completed-text': task.status === 'CONCLUIDA'}">
+            {{ task.description }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <div class="empty-state" *ngIf="filteredTasks.length === 0">
+        <mat-icon class="empty-icon">assignment</mat-icon>
+        <h3>Nenhuma tarefa encontrada</h3>
+        <p>{{ getEmptyStateMessage() }}</p>
+        <button mat-raised-button color="primary" (click)="openTaskForm()">
+          Criar nova tarefa
+        </button>
+      </div>
+    </div>
+
+    <div class="loading-container" *ngIf="isLoading">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Carregando tarefas...</p>
+    </div>
+  </div>
+</div>
