@@ -128,9 +128,9 @@ ng run start
 
 ##🌍 Ambiente de Teste
 
-    Frontend: https://nest-fullstack-test.vercel.app 
+    Frontend: https://nest-fullstack.vercel.app
     Backend: https://nest-fullstack.onrender.com
-    Documentação API (Swagger): https://nest-fullstack-test.onrender.com/api 
+    Documentação API (Swagger): https://nest-fullstack.onrender.com/api 
 
 ## ⚙️ Variáveis de Ambiente
 
