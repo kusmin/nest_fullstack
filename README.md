@@ -125,11 +125,12 @@ ng run start
 - `DELETE /tasks/:id` - Remove uma tarefa
 - `PATCH /tasks/:id/complete` - Marca/desmarca tarefa como concluída
 
-## 🌍 Ambiente de Produção
 
-- Frontend: [URL do deploy no Vercel/Netlify]
-- Backend: [URL do deploy no Render/Railway]
-- Documentação API (Swagger): [URL do Swagger]
+##🌍 Ambiente de Teste
+
+    Frontend: https://nest-fullstack-test.vercel.app 
+    Backend: https://nest-fullstack-test.onrender.com 
+    Documentação API (Swagger): https://nest-fullstack-test.onrender.com/api 
 
 ## ⚙️ Variáveis de Ambiente
 
